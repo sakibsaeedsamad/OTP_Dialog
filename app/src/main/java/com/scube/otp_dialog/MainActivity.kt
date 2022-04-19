@@ -1,7 +1,9 @@
 package com.scube.otp_dialog
 
 import android.app.Dialog
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.widget.Button
 import android.widget.Toast
@@ -67,11 +69,26 @@ class MainActivity : AppCompatActivity() {
 
         btn_submit.setOnClickListener{
 
+            var found = false
 
-            Toast.makeText(this,"${nameList[0].USER_OTP}", Toast.LENGTH_SHORT).show()
-            Toast.makeText(this,"${nameList[1].USER_OTP}", Toast.LENGTH_SHORT).show()
+           var i=0
 
-            dialog.dismiss()
+            while (i<nameList.size){
+                if(nameList[i].USER_OTP.equals("")){
+                    found=true
+                    break
+                }
+                i++
+            }
+
+            if(found){
+                Toast.makeText(this, "Please Enter all otp", Toast.LENGTH_SHORT).show()
+
+            }
+            else{
+                dialog.dismiss()
+            }
+
         }
 
         btn_cancel.setOnClickListener {
